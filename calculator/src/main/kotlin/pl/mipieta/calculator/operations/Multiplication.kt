@@ -8,6 +8,6 @@ internal class Multiplication : Operation {
     override fun operator(): String = "*"
 
     override fun evaluate(a: BigDecimal, b: BigDecimal): BigDecimal {
-        return BigDecimal("1.0")
+        return a.times(b)
     }
 }

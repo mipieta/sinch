@@ -5,9 +5,9 @@ import java.math.BigDecimal
 
 @Component
 internal class Division : Operation {
-    override fun operator(): String = "-"
+    override fun operator(): String = "/"
 
     override fun evaluate(a: BigDecimal, b: BigDecimal): BigDecimal {
-        return BigDecimal("1.0")
+        return a.divide(b)
     }
 }

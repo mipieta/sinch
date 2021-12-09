@@ -2,7 +2,7 @@
 
 ### Using Docker
 ```
-docker build -t pairs
+docker build . -t pairs
 docker run -i pairs < samples/simple.txt
 ```
 ### Using JDK 17

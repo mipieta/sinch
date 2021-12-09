@@ -2,7 +2,7 @@
 
 ### Using Docker
 ```
-docker build -t calculator
+docker build . -t calculator
 docker run -i calculator < samples/simple.txt
 ```
 ### Using JDK 17
