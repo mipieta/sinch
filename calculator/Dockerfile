@@ -1,9 +1,10 @@
-FROM openjdk:17-slim AS builder
+FROM openjdk:11-slim AS builder
 COPY . /usr/calculator
 WORKDIR /usr/calculator
 RUN ./gradlew build --no-daemon
 
-FROM openjdk:17-slim
+FROM openjdk:11-slim
+EXPOSE 8080
 RUN mkdir /app
 COPY --from=builder /usr/calculator/build/libs/*.jar /app/calculator.jar
 WORKDIR /app

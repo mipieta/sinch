@@ -9,7 +9,7 @@ internal class PolishNotationCalculator(
     private val parser: Parser,
     private val scanner: Scanner
 ) {
-    fun evaluate(line: String): String {
+    fun evaluate(line: String, rethrow: Boolean = false): String {
         try {
             val tokens = LinkedList(line.split(' ')) //LinkedList because we need to remove from the middle
 
@@ -28,6 +28,7 @@ internal class PolishNotationCalculator(
             if (tokens.size != 1) throw IllegalArgumentException("Not a valid Polish Notation expression")
             return BigDecimal(tokens.first).setScale(2, RoundingMode.HALF_UP).toString()
         } catch (e: RuntimeException) {
+            if (rethrow) throw e
             return "error"
         }
     }

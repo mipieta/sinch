@@ -1,12 +1,24 @@
 # Building and running instructions
 
-### Using Docker
-```
-docker build . -t calculator
-docker run -i calculator < samples/simple.txt
-```
-### Using JDK 17
+## Running
+
+[//]: # (### Using Docker)
+[//]: # (```)
+[//]: # (docker build . -t calculator:2.0.0)
+[//]: # (docker run calculator:2.0.0 -p 8080:8080 --env-file samples/secrets)
+[//]: # (```)
+
+### Using JDK 11 & Bash
 ```
 ./gradlew build --no-daemon
-java -jar build/libs/calculator-1.0.0.jar < samples/simple.txt
+export $(cat samples/secret) && java -jar build/libs/calculator-2.0.0.jar
 ```
+
+##Usage
+```
+TOKEN=`curl -sX POST http://localhost:8080/auth/token -d 'client' -u admin:pass`
+curl -sX POST http://localhost:8080/api/v1/calculators/polish-notation -d '+ 1 2' -H "Content-Type: text/plain" -H "Authentication: Bearer $TOKEN"
+```
+
+## Notes for production usage
+The application relies on TLS termination on a gateway / proxy / ingress.
